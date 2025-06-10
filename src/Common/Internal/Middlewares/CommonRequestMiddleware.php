@@ -61,8 +61,8 @@ class CommonRequestMiddleware extends MiddlewareBase
      */
     public function __construct(
         ?IAuthScheme $authenticationScheme = null,
-        $storageAPIVersion,
-        $serviceSDKVersion,
+        ?string $storageAPIVersion = null,
+        ?string $serviceSDKVersion = null,
         array $headers = array()
     ) {
         $this->authenticationScheme = $authenticationScheme;
