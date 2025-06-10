@@ -49,7 +49,7 @@ class Utilities
      *
      * @return mixed
      */
-    public static function tryGetValue($array, $key, $default = null)
+    public static function tryGetValue($array, $key, mixed $default = null)
     {
         return (!is_null($array)) && is_array($array) && array_key_exists($key, $array)
             ? $array[$key]
@@ -260,7 +260,7 @@ class Utilities
      *
      * @return array
      */
-    private static function _sxml2arr($sxml, array $arr = null)
+    private static function _sxml2arr($sxml, ?array $arr = null)
     {
         foreach ((array) $sxml as $key => $value) {
             if (is_object($value) || (is_array($value))) {
@@ -287,8 +287,8 @@ class Utilities
     public static function serialize(
         array $array,
         $rootName,
-        $defaultTag = null,
-        $standalone = null
+        ?string $defaultTag = null,
+        ?string $standalone = null
     ) {
         $xmlVersion  = '1.0';
         $xmlEncoding = 'UTF-8';
@@ -323,7 +323,7 @@ class Utilities
     private static function _arr2xml(
         \XMLWriter $xmlw,
         array $data,
-        $defaultTag = null
+        ?string $defaultTag = null
     ) {
         foreach ($data as $key => $value) {
             if (strcmp($key, '@attributes') == 0) {
@@ -528,7 +528,7 @@ class Utilities
      *
      * @return mixed
      */
-    public static function tryGetValueInsensitive($key, $haystack, $default = null)
+    public static function tryGetValueInsensitive($key, $haystack,mixed $default = null)
     {
         $array = array_change_key_case($haystack);
         return Utilities::tryGetValue($array, strtolower($key), $default);
@@ -751,7 +751,7 @@ class Utilities
      *
      * @return void
      */
-    public static function validateMetadata(array $metadata = null)
+    public static function validateMetadata(?array $metadata = null)
     {
         if (!is_null($metadata)) {
             Validate::isArray($metadata, 'metadata');
